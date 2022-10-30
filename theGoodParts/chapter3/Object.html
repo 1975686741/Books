@@ -1,0 +1,61 @@
+<!DOCTYPE  HTML>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系好安全带,准备启航</title>
+<script type="text/javascript">
+  //通过javascript的日期对象来得到当前的日期，并输出。
+  var date = new Date();  // 实例化日期对象  
+  var timeStr = '';//日期 
+  timeStr = date.getFullYear() + "年" ;  
+  timeStr += date.getMonth() + 1 +"月";  
+  timeStr += date.getDate()+"日";  
+  timeStr += date.getHours()+":";  
+  timeStr += date.getMinutes();  
+  var day  = date.getDay(); //星期 
+  var week = '';
+  switch(day){
+	case  0 :
+		week  = '星期日';
+		break;
+	case  1 :
+		week  = '星期一';
+	break;
+	case  2 :
+		week  = '星期二';
+		break;
+	case  3 :
+		week  = '星期三';
+		break;
+	case  4 :
+		week  = '星期四';
+		break;
+	case  5 :
+		week  = '星期五';
+		break;
+	case  6 :
+		week  = '星期六';
+		break; 
+  }
+  timeStr += "&nbsp;"+week;
+  //打印出日期
+  document.write("现在的时间是："+timeStr+"<br>");
+  //成绩是一长窜的字符串不好处理，找规律后分割放到数组里更好操作哦
+  var sorceStr = "小明:87; 小花:81; 小红:97; 小天:76;小张:74;小小:94;小西:90;小伍:76;小迪:64;小曼:76";
+  var arr  = sorceStr.split(';');//按 ; 符号进行数组分割
+  var sum = 0;
+  var av= 0;
+  for( var i =0;i<arr.length;i++ ){
+	    var index = arr[i].indexOf(':'); //根据 ： 符号确定数字开始的位置 
+		sum += parseInt(  arr[i].substr(index+1,2)  );  // parseInt() 字符串类型转成整型
+   }
+	av = sum/arr.length;
+
+        av = Math.round(av);  // 取整
+  //从数组中将成绩撮出来，然后求和取整，并输出。
+   document.write("班级平均分为："+av);
+</script>
+</head>
+<body>
+</body>
+</html>
