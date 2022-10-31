@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>定义函数</title>
+<script type="text/javascript">
+  function   sub2()        //定义函数
+ {
+   sub=5-2;
+   alert("5和2的差:"+sub);
+ };
+  function   add3(x,y,z)              //有参数的函数
+	{
+	  sum = x + y +z;
+	  document.write(x+"、"+y+"、"+z+"的和:"+sum+"<br/>");
+	}
+	 add3(5,8,3);
+	 add3(7,1,4);
+     function  app2(x,y)      //返回值的函数
+  { var sum,x,y;
+    sum = x * y;
+return sum;
+  }
+ var req1=app2(5,6)
+ var req2=app2(2,3)
+var sumq=req1+req2;
+document.write("req1的值:"+req1+"<br/>");
+document.write("req2的值:"+req2+"<br/>");
+document.write(req1+"与"+req2+"的和是:"+sumq);
+</script>
+</head>
+<body>
+<form>
+    <input type="button" value="定义调用函数" onclick="sub2()" /> 
+</form>
+</body>
+</html>
