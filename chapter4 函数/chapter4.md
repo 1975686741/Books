@@ -59,6 +59,33 @@
      //statusObject并没有继承自Quo.peototype，但我们可以在statusObject上调用get_status方法，尽管statusObject并没有一个名为get_status的方法
      //var status = Quo.prototype.get_status.apply(statusObject);
      //status值为'A-OK'
+- 参数
+     1. 当函数被调用时，会得到一个“免费”配送的参数，就是arguments数组。
+     函数可以通过此参数访问所有它被调用时传递给它的参数列表，包括那些没有被分配给函数声明时定义的形式参数的多余参数。
+- 返回
+      1. return语句可用来使函数提前返回。当return被执行时，函数立即返回而不再执行余下的语句。
+     如果函数调用时在前面加上了new前缀，且返回值不是一个对象，则返回this（该新对象）。
+- 异常
+       throw{
+        name:'TypeError',
+        message:'add needs numbers'
+       } 
+     throw语句中断函数的执行。
+- 扩充类型的功能
+     1. 通过给Object.prototype添加方法，可以让该方法对所有对象都可用。这样的方式对函数、数组、字符串、数字、正则表达式和布尔值同样适用。
+     2. 通过Function.prototype增加方法来使得该方法对所有函数可用：
+     Function.prototype.method = function (name,func){
+        this.peototype[name] = func;
+        return this;
+     }
+     通过给Function.prototype增加一个method方法，我们下次给对象增加方法的时候就不必键入prototype这几个字符，节省了时间。
+     给Number.prototype增加一个integer方法，根据数字的正负来判断是使用Math.ceil还是Math.floor：
+     Number.method('integer',function(){
+        return Math[this<0 ? 'ceil' : 'floor'](this);
+     });
+     document.writeln((-10 / 3).integer());     //-3
+     3. JavaScript缺少一个移除字符串首尾 
+
 
 
 
