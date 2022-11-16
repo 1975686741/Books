@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 构造一个给任何对象添加简单事件处理特性的函数。 给对象添加一个on方法、fire方法和一个私有的事件注册表对象：
+         var eventuality = function (that) {
+            var registry = {};
+            that.fire = function (event) {
+               //在一个对象上触发一个事件。该事件可以是一个包含事件名称的字符串
+               //或者是一个拥有包含事件名称的type属性的对象
+               //通过'on'方法注册的事件处理程序中匹配事件名称的函数将被调用
+            var array,
+                 func, 
+                 handler, 
+                 i,
+                 type = typeof event === 'string' ? event : event.type;
+                //如果这个事件存在一组事件处理程序，那么就遍历它们并按顺序依次执行。
+            if (registry.hasOwnProperty(type)) {
+                array = registry[type];
+                for (i = 0; i < array.length; i += 1){
+                    handler = array[i];
+                //每个处理程序包含一个方法和一组可选的参数
+                //如果该方法是一个字符串形式的名字，那么寻找到该函数
+                func = handler.method;
+                if (typeof func === 'string'){
+                    func = this[func];
+                }
+                //调用一个处理程序。 如果该条目包含参数，那么传递它们过去。否则，传递该事件对象
+                func.apply(this, handler.parameters || [event]);                  
+                  }
+                }
+                return this;
+                };
+                that.on = function (type, method, parameters) {
+                    //注册一个事件。构造一条处理程序条目。将它插入到处理程序数组中
+                    //如果这种类型的事件还不存在，就构造一个
+                var handler = {
+                    method: method,
+                    parameters: parameters
+                };
+                if (registry.hasOwnProperty(type)) {
+                    registry[type].push(handler);
+                } else{
+                    registry[type] = [handler];
+                };
+                return that;
+                };
+                eventuality(that);
+            }
+    </script>
+</body>
+</html>
